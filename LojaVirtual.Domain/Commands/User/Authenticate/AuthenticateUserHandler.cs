@@ -5,20 +5,20 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Domain.Commands.User.Register
+namespace LojaVirtual.Domain.Commands.User.Authenticate
 {
-    public class RequestUserHandler : HandlerBase, IRequestHandler<RegisterUserRequest, ResponseGeneric>
+    public class AuthenticateUserHandler : HandlerBase, IRequestHandler<AuthenticateUserRequest, ResponseGeneric>
     {
         private readonly IUserRepository userRepository;
 
-        public RequestUserHandler(
+        public AuthenticateUserHandler(
             IUserRepository userRepository    
         )
         {
             this.userRepository = userRepository;
         }
 
-        public async Task<ResponseGeneric> Handle(RegisterUserRequest request, CancellationToken cancellationToken)
+        public async Task<ResponseGeneric> Handle(AuthenticateUserRequest request, CancellationToken cancellationToken)
         {
             request.Validate();
             if (request.Invalid)
@@ -28,18 +28,20 @@ namespace LojaVirtual.Domain.Commands.User.Register
             }
 
             Entities.User userExists = this.userRepository.GetBy(x => x.Email == request.Email);
-            
-            if (userExists != null)
+
+            if (userExists == null)
             {
-                AddNotification("E-mail", "E-mail está em uso");
+                AddNotification("User", "Usuário inválido");
                 return new ResponseGeneric(false, "Usuário inválido", Notifications);
             }
 
-            string passwordHashed = request.Password.HashBCrypt();
-            Entities.User user = new Entities.User(request.Name, request.Email, passwordHashed);
-            user = this.userRepository.Add(user);            
+            if (!request.Password.CompareHashBCrypt(userExists.Password))
+            {
+                AddNotification("User", "Usuário inválido");
+                return new ResponseGeneric(false, "Usuário inválido", Notifications);
+            }
 
-            var response = new ResponseGeneric(true, "Usuário cadastrado com sucesso", user);
+            var response = new ResponseGeneric(true, "Usuário autenticado com sucesso", userExists);
 
             return await Task.FromResult(response);
         }

@@ -1,41 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Domain.Commands;
+﻿using LojaVirtual.Domain.Commands;
 using LojaVirtual.Infra.Transactions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace LojaVirtual.Api.Controllers.Base
 {
-    public class BaseController : Controller
+    public abstract class BaseController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public BaseController(IUnitOfWork unitOfWork)
+        protected BaseController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-        public async Task<IActionResult> ResponseSaveAsync(ResponseGeneric response)
+        protected async Task<IActionResult> ResponseSaveAsync(object response)
         {
-            if (response.Success)
-            {
-                await this.unitOfWork.SaveChanges();
+            await this.unitOfWork.SaveChanges();
 
-                return Ok(response);
-            }
-            return BadRequest(response);
+            return Ok(response);
         }
 
-        public async Task<IActionResult> ResponseAsync(ResponseGeneric response)
+        protected IActionResult ResponseGet(object response)
         {
-            if (response.Success)
-            {
-                return Ok(response);
-            }
-            return BadRequest(response);
+            return Ok(response);
         }
     }
 }

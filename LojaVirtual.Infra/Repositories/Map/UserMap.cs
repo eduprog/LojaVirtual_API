@@ -13,6 +13,9 @@ namespace LojaVirtual.Infra.Repositories.Map
             builder.Property(x => x.Name).HasColumnType("varchar(200)").IsRequired();
             builder.Property(x => x.Email).HasColumnType("varchar(200)").IsRequired();
             builder.Property(x => x.Password).HasColumnType("varchar(100)").IsRequired();
+
+            builder.HasIndex(t => t.Email)
+                .IsUnique();
         }
     }
 }

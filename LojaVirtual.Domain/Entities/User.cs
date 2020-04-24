@@ -1,7 +1,4 @@
 ﻿using LojaVirtual.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LojaVirtual.Domain.Entities
 {
@@ -17,5 +14,13 @@ namespace LojaVirtual.Domain.Entities
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }
+
+        public User GetUserWithoutPassword()
+        {
+            User clone = (User)this.MemberwiseClone();
+
+            clone.Password = null;
+            return clone;
+        }
     }
 }
