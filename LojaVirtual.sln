@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual.Domain", "LojaV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual.Infra", "LojaVirtual.Infra\LojaVirtual.Infra.csproj", "{670B1CD0-C7B5-4E4C-8315-DC0F28858DAB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual.Api", "LocalVirtual.Api\LojaVirtual.Api.csproj", "{834BA15A-C630-44DD-846E-C0931777264E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual.Api", "LojaVirtual.Api\LojaVirtual.Api.csproj", "{834BA15A-C630-44DD-846E-C0931777264E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
