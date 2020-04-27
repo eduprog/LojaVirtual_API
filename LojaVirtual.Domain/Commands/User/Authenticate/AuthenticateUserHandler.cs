@@ -24,7 +24,7 @@ namespace LojaVirtual.Domain.Commands.User.Authenticate
             if (request.Invalid)
             {
                 AddNotifications(request.Notifications);
-                return new ResponseGeneric(false, "Usuário inválido", request.Notifications);
+                return new ResponseGeneric(false, "Não foi possível entrar! Usuário inválido.", request.Notifications);
             }
 
             Entities.User userExists = this.userRepository.GetBy(x => x.Email == request.Email);
@@ -32,13 +32,13 @@ namespace LojaVirtual.Domain.Commands.User.Authenticate
             if (userExists == null)
             {
                 AddNotification("User", "Usuário inválido");
-                return new ResponseGeneric(false, "Usuário inválido", Notifications);
+                return new ResponseGeneric(false, "Não foi possível entrar! Usuário inválido.", Notifications);
             }
 
             if (!request.Password.CompareHashBCrypt(userExists.Password))
             {
                 AddNotification("User", "Usuário inválido");
-                return new ResponseGeneric(false, "Usuário inválido", Notifications);
+                return new ResponseGeneric(false, "Não foi possível entrar! Usuário inválido.", Notifications);
             }
 
             var response = new ResponseGeneric(true, "Usuário autenticado com sucesso", userExists);

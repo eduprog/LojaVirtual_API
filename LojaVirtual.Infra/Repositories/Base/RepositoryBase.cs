@@ -64,5 +64,11 @@ namespace LojaVirtual.Infra.Repositories.Base
             var model = _context.Add<TEntity>(entity);
             return model.Entity;
         }
+
+        public TEntity Update(TEntity entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+            return entity;
+        }
     }
 }

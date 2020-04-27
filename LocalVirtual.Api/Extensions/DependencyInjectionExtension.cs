@@ -19,6 +19,8 @@ namespace LojaVirtual.Api.Extensions
             service.AddScoped<ICategoryRepository, CategoryRepository>();
             service.AddScoped<IProductRepository, ProductRepository>();
             service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IUserTokenRepository, UserTokenRepository>();
+            service.AddScoped<IPlaceRepository, PlaceRepository>();
 
         }
     }

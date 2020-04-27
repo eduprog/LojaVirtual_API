@@ -4,14 +4,16 @@ using LojaVirtual.Infra.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LojaVirtual.Infra.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200426153240_CreateTableUserToken")]
+    partial class CreateTableUserToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,49 +88,6 @@ namespace LojaVirtual.Infra.Migrations
                     b.HasIndex("UserCreateId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("LojaVirtual.Domain.Entities.Place", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("varchar(400)");
-
-                    b.Property<double?>("Latitude")
-                        .IsRequired()
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Longitude")
-                        .IsRequired()
-                        .HasColumnType("float");
-
-                    b.Property<string>("Telephone")
-                        .IsRequired()
-                        .HasColumnType("varchar(40)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<bool>("VisibleOnApp")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Places");
                 });
 
             modelBuilder.Entity("LojaVirtual.Domain.Entities.Product", b =>

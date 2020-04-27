@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "LojaVirtual.Domain": {
+      "commandName": "Project"
+    }
+  }
+}

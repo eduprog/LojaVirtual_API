@@ -2,6 +2,7 @@
 using LojaVirtual.Api.Helpers.Authentication;
 using LojaVirtual.Domain.Commands.User.Authenticate;
 using LojaVirtual.Domain.Commands.User.Register;
+using LojaVirtual.Domain.Commands.User.SendEmailPasswordReset;
 using LojaVirtual.Infra.Transactions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -19,8 +20,8 @@ namespace LojaVirtual.Api.Controllers
         private readonly IMediator _mediator;
 
         public AuthController(
-            IMediator mediator, 
-            IUnitOfWork unitOfWork            
+            IMediator mediator,
+            IUnitOfWork unitOfWork
         ) : base(unitOfWork)
         {
             _mediator = mediator;
@@ -31,7 +32,7 @@ namespace LojaVirtual.Api.Controllers
         public async Task<IActionResult> Register(
             [FromBody] RegisterUserRequest request,
             [FromServices] SigningConfigurations signingConfigurations,
-            [FromServices] TokenConfigurations tokenConfigurations)           
+            [FromServices] TokenConfigurations tokenConfigurations)
         {
             try
             {
@@ -39,12 +40,11 @@ namespace LojaVirtual.Api.Controllers
 
                 if (response.Success == true)
                 {
-                    var token = GenerateToken.Generate(response, signingConfigurations, tokenConfigurations);
-
-                    return await ResponseSaveAsync(token);
+                    response.Data = GenerateToken.Generate(response, signingConfigurations, tokenConfigurations);
+                    return await ResponseSaveAsync(response);
                 }
 
-                return await ResponseSaveAsync(response);
+                return ResponseGet(response);
             }
             catch (Exception ex)
             {
@@ -65,9 +65,31 @@ namespace LojaVirtual.Api.Controllers
 
                 if (response.Success == true)
                 {
-                    var token = GenerateToken.Generate(response, signingConfigurations, tokenConfigurations);
+                    response.Data = GenerateToken.Generate(response, signingConfigurations, tokenConfigurations);
 
-                    return ResponseGet(token);
+                    return ResponseGet(response);
+                }
+
+                return ResponseGet(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("send-email-password-reset")]
+        public async Task<IActionResult> SendEmailPasswordReset(
+            [FromBody] SendEmailPasswordResetRequest request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request, CancellationToken.None);
+
+                if (response.Success == true)
+                {
+                    return await ResponseSaveAsync(response);
                 }
 
                 return ResponseGet(response);
