@@ -1,5 +1,4 @@
-﻿using LojaVirtual.Domain.Commands;
-using LojaVirtual.Infra.Transactions;
+﻿using LojaVirtual.Domain.Interfaces.Transactions;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

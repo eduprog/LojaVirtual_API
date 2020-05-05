@@ -3,7 +3,7 @@ using LojaVirtual.Api.Helpers.Authentication;
 using LojaVirtual.Domain.Commands.User.Authenticate;
 using LojaVirtual.Domain.Commands.User.Register;
 using LojaVirtual.Domain.Commands.User.SendEmailPasswordReset;
-using LojaVirtual.Infra.Transactions;
+using LojaVirtual.Domain.Interfaces.Transactions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

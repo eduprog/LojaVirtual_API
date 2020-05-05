@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Interfaces.Repositories;
+using LojaVirtual.Domain.Interfaces.Transactions;
 using LojaVirtual.Infra.Repositories;
 using LojaVirtual.Infra.Repositories.Base;
 using LojaVirtual.Infra.Transactions;
@@ -21,6 +22,8 @@ namespace LojaVirtual.Api.Extensions
             service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<IUserTokenRepository, UserTokenRepository>();
             service.AddScoped<IPlaceRepository, PlaceRepository>();
+            service.AddScoped<ICartRepository, CartRepository>();
+
 
         }
     }

@@ -1,8 +1,5 @@
 ﻿using LojaVirtual.Domain.Entities.Base;
 using LojaVirtual.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LojaVirtual.Domain.Entities
 {

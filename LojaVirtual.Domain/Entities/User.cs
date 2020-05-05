@@ -22,5 +22,10 @@ namespace LojaVirtual.Domain.Entities
             clone.Password = null;
             return clone;
         }
+
+        public void SetPassword(string password)
+        {
+            this.Password = password;
+        }
     }
 }

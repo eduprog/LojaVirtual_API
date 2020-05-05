@@ -6,7 +6,8 @@ using System.Collections.Generic;
 namespace LojaVirtual.Domain.Interfaces.Repositories
 {
     public interface IProductRepository :
-        IListAndOrderByRepository<Product>
+        IListAndOrderByRepository<Product>,
+        IGetByRepository<Product>
     {
         IList<Product> Test(Guid CategoryId);
     }

@@ -14,6 +14,7 @@ namespace LojaVirtual.Infra.Repositories.Base
         public DbSet<User> Users { get; set; }
         public DbSet<UserToken> UserTokens { get; set; }
         public DbSet<Place> Places { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

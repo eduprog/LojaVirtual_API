@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Infra.Repositories.Base;
+﻿using LojaVirtual.Domain.Interfaces.Transactions;
+using LojaVirtual.Infra.Repositories.Base;
 using System.Threading.Tasks;
 
 namespace LojaVirtual.Infra.Transactions

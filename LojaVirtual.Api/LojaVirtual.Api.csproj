@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>J:\Jonathas\Cursos\Udemy\Flutter_cioffi\LojaVirtual\LojaVirtual.Backend\LojaVirtual\LocalVirtual.Api\LojaVirtual.Api.xml</DocumentationFile>
+    <DocumentationFile>J:\Jonathas\Cursos\Udemy\Flutter_cioffi\LojaVirtual\LojaVirtual.Backend\LojaVirtual\LojaVirtual.Api\LojaVirtual.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

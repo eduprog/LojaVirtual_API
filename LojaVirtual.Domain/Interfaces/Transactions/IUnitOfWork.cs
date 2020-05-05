@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace LojaVirtual.Infra.Transactions
+namespace LojaVirtual.Domain.Interfaces.Transactions
 {
     public interface IUnitOfWork
     {
