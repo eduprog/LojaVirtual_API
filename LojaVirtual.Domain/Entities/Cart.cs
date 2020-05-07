@@ -36,5 +36,15 @@ namespace LojaVirtual.Domain.Entities
         {
             this.Quantity++;
         }
+
+        public void decrementQuantity()
+        {
+            this.Quantity--;
+        }
+
+        public void setRemoved()
+        {
+            this.Status = ECartStatus.Removed;
+        }
     }
 }
