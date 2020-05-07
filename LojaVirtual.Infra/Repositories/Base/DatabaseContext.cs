@@ -15,6 +15,7 @@ namespace LojaVirtual.Infra.Repositories.Base
         public DbSet<UserToken> UserTokens { get; set; }
         public DbSet<Place> Places { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

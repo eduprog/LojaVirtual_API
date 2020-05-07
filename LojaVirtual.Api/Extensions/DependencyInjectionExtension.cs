@@ -23,7 +23,7 @@ namespace LojaVirtual.Api.Extensions
             service.AddScoped<IUserTokenRepository, UserTokenRepository>();
             service.AddScoped<IPlaceRepository, PlaceRepository>();
             service.AddScoped<ICartRepository, CartRepository>();
-
+            service.AddScoped<ICouponRepository, CouponRepository>();
 
         }
     }
