@@ -28,17 +28,11 @@ namespace LojaVirtual.Domain.Commands.Coupon.GetCoupon
             }
 
             Entities.Coupon coupon = this.couponRepository.GetBy(x => x.Reference.ToLower() == request.Reference.ToLower());
+            coupon.Validate();
 
-            if (coupon == null || coupon.Active == false)
+            if (coupon.Invalid)
             {
-                AddNotification("User", "Cupom de desconto inválido");
-                return new ResponseGeneric(false, "Não foi possível consultar o cupom de desconto!", Notifications);
-            }
-
-            if (DateTime.Now >= coupon.ExpirationDate)
-            {
-                AddNotification("Coupon", "Cupom de desconto expirado");
-                return new ResponseGeneric(false, "Não foi possível consultar o cupom de desconto!", Notifications);
+                return new ResponseGeneric(false, "Não foi possível consultar o cupom de desconto!", coupon.Notifications);
             }
 
             var response = new ResponseGeneric(true, "Cupom de desconto aplicado com sucesso!", new { Reference = coupon.Reference, Percent = coupon.Percent });
