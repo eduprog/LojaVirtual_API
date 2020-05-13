@@ -46,5 +46,10 @@ namespace LojaVirtual.Domain.Entities
         {
             this.Status = ECartStatus.Removed;
         }
+
+        public void setBuyed()
+        {
+            this.Status = ECartStatus.Buyed;
+        }
     }
 }
