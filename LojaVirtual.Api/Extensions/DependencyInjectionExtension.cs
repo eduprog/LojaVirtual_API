@@ -1,7 +1,9 @@
 ﻿using LojaVirtual.Domain.Interfaces.Repositories;
+using LojaVirtual.Domain.Interfaces.Services;
 using LojaVirtual.Domain.Interfaces.Transactions;
 using LojaVirtual.Infra.Repositories;
 using LojaVirtual.Infra.Repositories.Base;
+using LojaVirtual.Infra.Services;
 using LojaVirtual.Infra.Transactions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +26,9 @@ namespace LojaVirtual.Api.Extensions
             service.AddScoped<IPlaceRepository, PlaceRepository>();
             service.AddScoped<ICartRepository, CartRepository>();
             service.AddScoped<ICouponRepository, CouponRepository>();
+            service.AddScoped<IOrderRepository, OrderRepository>();
+
+            service.AddScoped<IMessageBrokerService, RabbitMqService>();
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Domain.Entities;
+﻿using Flunt.Notifications;
+using LojaVirtual.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -16,6 +17,9 @@ namespace LojaVirtual.Infra.Repositories.Base
         public DbSet<Place> Places { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Coupon> Coupons { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +32,8 @@ namespace LojaVirtual.Infra.Repositories.Base
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Ignore<Notification>();
 
             base.OnModelCreating(modelBuilder);
         }
