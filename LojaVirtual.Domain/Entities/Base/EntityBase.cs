@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Flunt.Notifications;
+using System;
 
 namespace LojaVirtual.Domain.Entities.Base
 {
-    public abstract class EntityBase
+    public abstract class EntityBase : Notifiable
     {
         public Guid Id { get; private set; }
         public DateTime CreateDate { get; private set; }
