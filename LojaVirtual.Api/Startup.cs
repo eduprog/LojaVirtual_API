@@ -24,7 +24,8 @@ namespace LojaVirtual.Api
             AuthenticationExtension.ConfigureService(services);
             MediatRExtension.ConfigureService(services);
             SwaggerExtension.ConfigureService(services);
-            ControllersExtension.ConfigureService(services);            
+            ControllersExtension.ConfigureService(services);
+            SignalRExtension.ConfigureService(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +36,7 @@ namespace LojaVirtual.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -51,6 +52,8 @@ namespace LojaVirtual.Api
             });
 
             SwaggerExtension.Configure(app);
+
+            SignalRExtension.Configure(app);
         }
     }
 }
