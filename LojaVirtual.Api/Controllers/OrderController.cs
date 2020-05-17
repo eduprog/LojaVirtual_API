@@ -2,9 +2,14 @@ using System;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using LojaVirtual.Api.Hubs;
 using LojaVirtual.Domain.Commands.Order.FinishOrder;
+using LojaVirtual.Domain.Commands.Order.ListOrdersByUser;
+using LojaVirtual.Domain.Commands.Order.UpdateStatusOrder;
+using LojaVirtual.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace LojaVirtual.Api.Controllers
 {
@@ -13,15 +18,17 @@ namespace LojaVirtual.Api.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IHubContext<OrdersHub> ordersHubContext;
 
         public OrderController(
-            IMediator mediator
+            IMediator mediator,
+            IHubContext<OrdersHub> ordersHubContext
         )
         {
             this._mediator = mediator;
+            this.ordersHubContext = ordersHubContext;
         }
 
-        [HttpPost]
         [HttpPost("finish")]
         public async Task<IActionResult> Finish([FromBody] FinishOrderRequest request)
         {
