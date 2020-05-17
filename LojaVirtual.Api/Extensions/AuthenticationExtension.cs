@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LojaVirtual.Api.Extensions
@@ -49,6 +47,24 @@ namespace LojaVirtual.Api.Extensions
                 // Tempo de expiração de um token (utilizado caso haja problemas de sincronismo de horário
                 // entre diferentes computadores envolvidos em processo de comunicação
                 paramsValidation.ClockSkew = TimeSpan.Zero;
+
+                bearerOptions.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var accessToken = context.Request.Query["access_token"];
+
+                        // If the request is for our hub...
+                        var path = context.HttpContext.Request.Path;
+                        if (!string.IsNullOrEmpty(accessToken) &&
+                            (path.StartsWithSegments("/ordersHub")))
+                        {
+                            // Read the token out of the query string
+                            context.Token = accessToken;
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
             });
 
             service.AddAuthorization(auth =>
