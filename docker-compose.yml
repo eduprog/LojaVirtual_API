@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  lojavirtual.api:
+    image: ${DOCKER_REGISTRY-}lojavirtualapi
+    build:
+      context: .
+      dockerfile: LojaVirtual.Api/Dockerfile
+    ports: 
+      - "5000:80"      
+    container_name: lojavirtual.api
+    depends_on:
+      - lojavirtual.db
+
+  lojavirtual.db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - SA_PASSWORD=1qaz2wsx!S
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+
+  lojavirtual.rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+    container_name: lojavirtual.rabbitmq
+
+  lojavirtual.workerapp:
+    image: ${DOCKER_REGISTRY-}lojavirtualworkerapp
+    build:
+      context: .
+      dockerfile: LojaVirtual.WorkerApp/Dockerfile
+

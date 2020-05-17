@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual.Infra", "LojaVi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual.Api", "LojaVirtual.Api\LojaVirtual.Api.csproj", "{834BA15A-C630-44DD-846E-C0931777264E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaVirtual.WorkerApp", "LojaVirtual.WorkerApp\LojaVirtual.WorkerApp.csproj", "{33681CE6-CEB9-439C-AB93-197ED3BB8B93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaVirtual.WorkerApp", "LojaVirtual.WorkerApp\LojaVirtual.WorkerApp.csproj", "{33681CE6-CEB9-439C-AB93-197ED3BB8B93}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{38309507-655C-49E2-89A0-A6EEC41F9918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{33681CE6-CEB9-439C-AB93-197ED3BB8B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33681CE6-CEB9-439C-AB93-197ED3BB8B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33681CE6-CEB9-439C-AB93-197ED3BB8B93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38309507-655C-49E2-89A0-A6EEC41F9918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38309507-655C-49E2-89A0-A6EEC41F9918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38309507-655C-49E2-89A0-A6EEC41F9918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38309507-655C-49E2-89A0-A6EEC41F9918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

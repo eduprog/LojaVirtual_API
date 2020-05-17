@@ -26,6 +26,8 @@ namespace LojaVirtual.Infra.Repositories.Base
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Server=localhost,1433; Database=LojaVirtual; User ID=SA; Password=1qaz2wsx!");
+
+                //optionsBuilder.UseSqlServer("Server=lojavirtual.db; Database=master; User ID=SA; Password=1qaz2wsx!S");
             }
         }
 

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LojaVirtual.WorkerApp": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
