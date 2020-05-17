@@ -36,5 +36,30 @@ namespace LojaVirtual.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("{order_id}/change-status/{status_id}")]
+        public async Task<IActionResult> ChangeStatus(Guid order_id, EOrderStatus status_id)
+        {
+            try
+            {
+                string userId = User.FindFirst(ClaimTypes.PrimarySid).Value;
+                var request = new UpdateStatusOrderRequest(order_id, status_id);
+                var response = await _mediator.Send(request, CancellationToken.None);
+
+                if (response.Success == true)
+                {
+                    var requestList = new ListOrdersByUserRequest(Guid.Parse(userId));
+                    var responseList = await _mediator.Send(requestList, CancellationToken.None);
+
+                    await this.ordersHubContext.Clients.Group(userId).SendAsync("ReceiveOrders", responseList);
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

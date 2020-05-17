@@ -44,5 +44,10 @@ namespace LojaVirtual.Domain.Entities
         {
             this.User = user;
         }
+
+        public void SetStatus(EOrderStatus status)
+        {
+            this.Status = status;
+        }
     }
 }
