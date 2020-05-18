@@ -59,9 +59,9 @@ namespace LojaVirtual.Api.Controllers
                     var responseList = await _mediator.Send(requestList, CancellationToken.None);
 
                     await this.ordersHubContext.Clients.Group(userId).SendAsync("ReceiveOrders", responseList);
+                    return Ok(responseList);
                 }
-
-                return Ok(response);
+                return Ok();
             }
             catch (Exception ex)
             {

@@ -16,19 +16,19 @@ namespace LojaVirtual.Api.Extensions
 
             service.AddDbContext<DatabaseContext>();
 
-            service.AddScoped<IUnitOfWork, UnitOfWork>();
+            service.AddTransient<IUnitOfWork, UnitOfWork>();
 
-            service.AddScoped<IBannerRepository, BannerRepository>();
-            service.AddScoped<ICategoryRepository, CategoryRepository>();
-            service.AddScoped<IProductRepository, ProductRepository>();
-            service.AddScoped<IUserRepository, UserRepository>();
-            service.AddScoped<IUserTokenRepository, UserTokenRepository>();
-            service.AddScoped<IPlaceRepository, PlaceRepository>();
-            service.AddScoped<ICartRepository, CartRepository>();
-            service.AddScoped<ICouponRepository, CouponRepository>();
-            service.AddScoped<IOrderRepository, OrderRepository>();
+            service.AddTransient<IBannerRepository, BannerRepository>();
+            service.AddTransient<ICategoryRepository, CategoryRepository>();
+            service.AddTransient<IProductRepository, ProductRepository>();
+            service.AddTransient<IUserRepository, UserRepository>();
+            service.AddTransient<IUserTokenRepository, UserTokenRepository>();
+            service.AddTransient<IPlaceRepository, PlaceRepository>();
+            service.AddTransient<ICartRepository, CartRepository>();
+            service.AddTransient<ICouponRepository, CouponRepository>();
+            service.AddTransient<IOrderRepository, OrderRepository>();
 
-            service.AddScoped<IMessageBrokerService, RabbitMqService>();
+            service.AddTransient<IMessageBrokerService, RabbitMqService>();
 
         }
     }
